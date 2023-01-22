@@ -50,6 +50,24 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Content Remove="appsettings.android.json" />
+      <Content Remove="appsettings.ios.json" />
+      <Content Remove="appsettings.json" />
+      <Content Remove="appsettings.mac.json" />
+      <Content Remove="appsettings.windows.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="appsettings.android.json" />
+      <EmbeddedResource Include="appsettings.ios.json" />
+      <EmbeddedResource Include="appsettings.json" />
+      <EmbeddedResource Include="appsettings.mac.json" />
+      <EmbeddedResource Include="appsettings.windows.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="IdentityModel" Version="6.0.0" />
+        <PackageReference Include="IdentityModel.OidcClient" Version="5.2.1" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
     </ItemGroup>
 

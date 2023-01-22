@@ -5,10 +5,23 @@
              x:Class="Megabank.App.MainPage"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
 
-    <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html">
-        <BlazorWebView.RootComponents>
-            <RootComponent Selector="#app" ComponentType="{x:Type local:Main}" />
-        </BlazorWebView.RootComponents>
-    </BlazorWebView>
+    <Grid VerticalOptions="Fill">
+        <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html" VerticalOptions="Fill" IsVisible="False">
+            <BlazorWebView.RootComponents>
+                <RootComponent Selector="#app" ComponentType="{x:Type local:Main}" />
+            </BlazorWebView.RootComponents>
+        </BlazorWebView>
+        <StackLayout
+            x:Name="LoginView">
+            <Button 
+                x:Name="LoginBtn"
+                Text="Log In"
+                SemanticProperties.Hint="Click to log in"
+                Clicked="OnLoginClicked"
+                HorizontalOptions="Center" />
 
+            <WebView x:Name="WebViewInstance" />
+        </StackLayout>
+    </Grid>
+   
 </ContentPage>

@@ -3,7 +3,14 @@ using Android.Runtime;
 
 namespace Megabank.App;
 
+//Todo: ML: Added this as Android doesnt trust the SSL cert on a locally hosted API. 
+//Need to look at a better way of doing this.
+#if DEBUG
+[Application(AllowBackup = false, Debuggable = true, UsesCleartextTraffic = true)]
+#else
 [Application]
+#endif
+//end Todo:
 public class MainApplication : MauiApplication
 {
 	public MainApplication(IntPtr handle, JniHandleOwnership ownership)
