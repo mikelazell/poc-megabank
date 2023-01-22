@@ -1,0 +1,26 @@
+﻿@page "/logout"
+
+@using Megabank.App.Auth
+
+<p>Logging out...</p>
+
+
+@code {
+    [Inject] public AuthClient authClient { get; set; }
+    [Inject] public NavigationManager NavigationManager { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        var logoutResult = await authClient.LogoutAsync();
+
+        if (!logoutResult.IsError)
+        {
+            Application.Current.Quit();
+        }
+        else
+        {
+
+        }
+    }
+}
