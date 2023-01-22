@@ -11,8 +11,12 @@
                 <RootComponent Selector="#app" ComponentType="{x:Type local:Main}" />
             </BlazorWebView.RootComponents>
         </BlazorWebView>
-        <StackLayout
-            x:Name="LoginView">
+        <StackLayout x:Name="LoginView" HorizontalOptions="Fill"  VerticalOptions="Fill" BackgroundColor="White" >
+            <Label HorizontalOptions="Fill" TextColor="Black" Margin="10,10,50,10" FontSize="20" HorizontalTextAlignment="Center"  >
+                <Label.Text>
+                    Welcome to Mega Bank
+                </Label.Text>
+            </Label>
             <Button 
                 x:Name="LoginBtn"
                 Text="Log In"
