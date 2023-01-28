@@ -1,6 +1,8 @@
 
 using System.Text.Json;
+using Megabank.Api.Interfaces;
 using Megabank.Api.Models;
+using Megabank.Api.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Megabank.Api
@@ -35,9 +37,7 @@ namespace Megabank.Api
                         {
                             context.Response.OnStarting(async () =>
                             {
-                                await context.Response.WriteAsync(
-                                    JsonSerializer.Serialize(new ApiResponse("You are not authorized!"))
-                                );
+                                await context.Response.WriteAsync("You are not authorized!");
                             });
 
                             return Task.CompletedTask;
@@ -63,6 +63,11 @@ namespace Megabank.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddHttpContextAccessor();
+
+            builder.Services.AddTransient<ICurrentUserService, CurrentUserService>();
+            builder.Services.AddSingleton<IBankService, BankService>();
 
             var app = builder.Build();
 
