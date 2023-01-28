@@ -1,6 +1,5 @@
 ﻿using Megabank.App.Auth;
 using Microsoft.Extensions.Logging;
-using Megabank.App.Data;
 using Megabank.App.Configuration.AppSettings;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
@@ -40,10 +39,14 @@ public static class MauiProgram
         builder.Services.AddSingleton<MainPage>();
 
         builder.Services.AddSingleton<TokenHandler>();
+        builder.Services.AddHttpClient("MegabankAPI",
+            client => client.BaseAddress = new Uri(appConfiguration.ApiUrl)
+        ).AddHttpMessageHandler<TokenHandler>();
+        builder.Services.AddTransient(
+            sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("MegabankAPI")
+        );
 
-        builder.Services.AddSingleton<WeatherForecastService>();
-
-		return builder.Build();
+        return builder.Build();
 	}
 
     private static string GetPlatformCode()

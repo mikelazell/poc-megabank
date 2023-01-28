@@ -1,3 +1,18 @@
 ﻿@page "/accounts"
 
 <h1>My Accounts</h1>
+
+@if(_accounts != null)
+{
+    @foreach (var account in _accounts)
+    {
+        <div class="account">
+            <h2>@account.Name</h2>
+            <p>@account.SortCode @account.AccountNumber</p>
+            <p>@account.Balance.ToString("C")</p>
+            <p>
+                <button @onclick="() => ViewAccount(account.Id)">View Account</button></p>
+        </div>
+    }
+}
+<button @onclick="() => CreateAccount()">Create Account</button>

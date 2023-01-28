@@ -1,0 +1,19 @@
+﻿@page "/accounts/create"
+
+<h1>Create an Account</h1>
+
+<p>Transfer money between accounts</p>
+
+<EditForm Model="@_addAccountModel" OnValidSubmit="@HandleValidSubmit">
+<DataAnnotationsValidator />
+<ValidationSummary />
+
+<p>
+    <label>
+        Account Name:
+            <InputText @bind-Value="_addAccountModel.Name" />
+    </label>
+</p>
+
+<button type="submit">Create</button>
+</EditForm>

@@ -18,6 +18,8 @@ public partial class MainPage : ContentPage
 
     private async void OnLoginClicked(object sender, EventArgs e)
     {
+        LoginView.IsVisible = false;
+
         var loginResult = await _authClient.LoginAsync();
 
         _authenticated = !loginResult.IsError;

@@ -1,4 +1,55 @@
-﻿@page "/transfer"
+﻿@page "/accounts/transfer"
+@page "/accounts/{AccountId:guid}/transfer"
+
 <h1>Transfer</h1>
 
 <p>Transfer money between accounts</p>
+
+<EditForm Model="@_addTransferModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    
+    <p>
+        <label>
+            From Account:
+            <InputSelect @bind-Value="_addTransferModel.SourceAccountId">
+                @if (_sourceAccounts != null)
+                {
+                    foreach (var account in _sourceAccounts)
+                    {
+                        <option value="@account.Id">@account.Name</option>
+                    }
+                }
+            </InputSelect>
+        </label>
+    </p>
+    
+    <p>
+        <label>
+            Reference:
+            <InputText @bind-Value="_addTransferModel.Reference" />
+        </label>
+    </p>
+
+    <p>
+        <label>
+            Sort code:
+            <InputNumber @bind-Value="_addTransferModel.DestinationSortCode" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Account Number:
+            <InputNumber @bind-Value="_addTransferModel.DestinationAccountNumber" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Value:
+            <InputNumber @bind-Value="_addTransferModel.Value" />
+        </label>
+    </p>
+
+    <button type="submit">Transfer</button>
+
+</EditForm>

@@ -68,6 +68,7 @@
     <ItemGroup>
         <PackageReference Include="IdentityModel" Version="6.0.0" />
         <PackageReference Include="IdentityModel.OidcClient" Version="5.2.1" />
+        <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
     </ItemGroup>
 

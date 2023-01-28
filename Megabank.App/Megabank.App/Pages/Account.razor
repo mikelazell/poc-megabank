@@ -1,0 +1,38 @@
+﻿@page "/accounts/{AccountId:guid}"
+
+<h1>@_account?.Name</h1>
+
+<div class="account">
+    <p><label>Sort code:</label>@_account?.SortCode @_account?.AccountNumber</p>
+    <p><label>Account number:</label>@_account?.Balance</p>
+</div>
+<h2>Transfers</h2>
+
+@if (_transfers != null && _transfers.Any())
+{
+    <table class="transfers">
+        <tr>
+            <th>Date</th>
+            <th>Reference</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Value</th>
+        </tr>
+        @foreach (var transfer in _transfers)
+        {
+            <tr>
+                <td>@transfer.Date.ToString("dd/MM/yy")</td>
+                <td>@transfer.Reference</td>
+                <td>@transfer.SourceAccountName</td>
+                <td>@transfer.DestinationAccountName</td>
+                <td>@transfer.Value.ToString("C")</td>
+                <td></td>
+            </tr>
+        }
+    </table>
+}
+
+<p>
+    <button @onclick="() => TransferMoney()">New Transfer</button>
+</p>
+
